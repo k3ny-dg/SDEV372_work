@@ -1,5 +1,6 @@
 window.onload = function (){
     loadData();
+    addFormHandler();
 }
 
 function loadData()
@@ -22,17 +23,12 @@ function loadData()
 
 function showData(ufos)
 {
-    let list = document.getElementById("ufos");
+
     let table = document.getElementById("ufo-table");
 
     for (let i = 0; i < ufos.length; i++) {
 
         let ufo = ufos[i];
-
-        // let li = document.createElement("li");
-        // li.innerHTML = ufo.id;
-        // console.log("id =" + ufo.id);
-        // list.appendChild(li);
 
         let tr = document.createElement("tr");
         table.appendChild(tr);
@@ -76,4 +72,38 @@ function showData(ufos)
         tr.appendChild(edit_td);
         tr.appendChild(del_td);
     }
+}
+
+function addFormHandler()
+{
+    let formButton = document.getElementById("add-btn");
+    formButton.onclick = handleFormSubmit;
+}
+
+function handleFormSubmit(event)
+{
+    event.preventDefault();
+    console.log("Handled form submit!");
+
+    let newRecord = {
+        id: document.getElementById("ufo_id").value,
+        shape: document.getElementById("shape").value,
+        description: document.getElementById("description").value,
+        encounterLength: document.getElementById("e-length").value
+    };
+
+    let uri = "http://localhost:8080/ufos/add-ufo";
+    let params = {
+        method: "post",
+        mode: "cors",
+        body: JSON.stringify(newRecord),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+
+    fetch(uri,params)
+        .then(function (response){
+            console.log(response)
+        });
 }

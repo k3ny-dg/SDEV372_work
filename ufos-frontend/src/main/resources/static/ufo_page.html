@@ -23,9 +23,30 @@
                 <th>Delete</th>
             </thead>
             <tbody id="ufo-table">
-
             </tbody>
         </table>
+
+        <h2>Seen a UFO? Report it here!</h2>
+        <form>
+            <section>
+                <label for="ufo_id">UFO ID</label>
+                <input type="text" id="ufo_id">
+            </section>
+            <section>
+                <label for="shape">Shape</label>
+                <input type="text" id="shape">
+            </section>
+            <section>
+                <label for="description">Description of encounter:</label>
+                <input type="text" id="description">
+            </section>
+            <section>
+                <label for="e-length">Encounter length (in seconds)</label>
+                <input type="text" id="e-length">
+            </section>
+
+            <button id="add-btn" type="submit">Submit!</button>
+        </form>
 
     </body>
 </html>
